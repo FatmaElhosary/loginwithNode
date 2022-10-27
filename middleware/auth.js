@@ -16,9 +16,9 @@ const auth = async(req,res,next)=>{
             "tokens.token":token
         })
         if(!user) throw new Error("unauthorized")
-        req.user = user
-        req.token = token
-        next()
+        req.user = user;
+        req.token = token;
+        next();
     }
     catch(e){
         res.status(500).send({apiStatus:false, data:e.message, message:"unauthorized"})

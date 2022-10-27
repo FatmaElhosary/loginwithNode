@@ -29,24 +29,12 @@ const userSchema = new mongoose.Schema({
        if(!validator.isMobilePhone(value,'ar-EG')) throw new Error("invalid phone format")
     }
     },
-    gender:{
-        type:String,
-        trim:true,
-        required:[true,'Please enter a gender'],
-        enum:["male", "female"]
-    },
-    status:{
-        type:Boolean,
-        default:false
-    },
+  
     img:{
         type:String
     },
     tokens:[ {token:{type:String, required:true}} ],
-    otp:{
-        type:String,
-        default:Date.now()
-    },
+   
     type:{
          type:String,
          enum:["admin","user"],

@@ -17,14 +17,23 @@ class Product{
 }
 
 static showMyProducts =async(req,res)=>{
-    await req.user.populate("myProducts")
+    await req.user.populate("myProducts");
     //if(req.user.myProducts)
     res.status(200).send({apiStatus:true, data:req.user.myProducts, message:"show my product"})
    // res.send(req.user.myProducts)
 }
+// accessing query string ... pagination
+//req.query.pageSize
+//req.query.page
+/*
+pageSize: Number of documents to be returned. ..limit
+page: Which portion of documents to be returned ...skip
+*/
 static showAll=async(req,res)=>{
 try {
-    let allProduct=await productModel.find();
+    const pageSize=req.query.pageSize?parseInt(req.query.pageSize):0;
+    const page=req.query.page?parseInt(req.query.page):0;
+    let allProduct=await productModel.find().skip(page).limit(pageSize);
     res.status(200).send({
         apiStatus: true,
         data: allProduct,
