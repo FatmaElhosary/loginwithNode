@@ -21,7 +21,7 @@ const auth = async(req,res,next)=>{
         next();
     }
     catch(e){
-        res.status(500).send({apiStatus:false, data:e.message, message:"unauthorized"})
+        res.status(401).send({apiStatus:false, data:e.message, message:"unauthorized"})
     }
 }
 

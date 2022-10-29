@@ -21,13 +21,14 @@ return errors;
 } */
 
 class User {
+    //login
     static addUser = async (req, res) => {
         try {
              
             let user = await userModel(req.body);
             await user.save();
             res.status(200).send({
-                apiStatus: true,
+                status: true,
                 data: user,
                 message: "data inserted successfuly"
             })

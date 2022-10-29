@@ -1,8 +1,9 @@
 const router=require('express').Router();
 const productController=require('../app/controller/product.controller');
 const auth=require('../middleware/auth');
+const authAdmin=require('../middleware/authAdmin');
 const uploadMany=require('../middleware/uploadfilestorage');
-router.post("/add",auth, productController.addProduct);
+router.post("/add",auth,authAdmin, productController.addProduct);
 router.get('/myproducts', auth, productController.showMyProducts);
 router.get('/all',productController.showAll);
 router.get('/all/:id',productController.showSingle);

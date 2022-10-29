@@ -79,7 +79,7 @@ userSchema.statics.loginUser = async(email,password)=>{
 const jwt = require("jsonwebtoken")
 userSchema.methods.generateToken = async function(){
     const user = this
-    const token = jwt.sign({_id:user._id}, "123") //user{_id:1}
+    const token = jwt.sign({_id:user._id}, "123",{expiresIn: '30d'}) //user{_id:1} ...// it will be expired after 30 days
     user.tokens = user.tokens.concat({token})
     await user.save()
     return token
